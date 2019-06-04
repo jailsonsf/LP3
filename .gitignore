@@ -2,6 +2,7 @@
 .vscode/
 
 # Java Project
+builds/
 .settings/
 bin/
 tmp/

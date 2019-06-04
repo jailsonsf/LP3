@@ -5,8 +5,9 @@ public interface IList {
 	public void addEnd(Item item);
 	public boolean full();
 	public boolean empty();
-	public Item printList();
+	public void printList();
 	public Item searchName(String name);
 	public Item searchOrder(int order);
+	public Item remove(int order);
 	public void drainOut();
 }

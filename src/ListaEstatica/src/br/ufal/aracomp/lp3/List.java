@@ -3,18 +3,20 @@ package br.ufal.aracomp.lp3;
 public class List implements IList{
 	
 	private int size;
+	private Item[] list;
+	private int maxSize;
+	
+	public List(int maxSize) {
+		this.list = new Item[maxSize];
+		this.maxSize = maxSize;
+	}
+	
 	public Item[] getList() {
 		return list;
 	}
 
 	public void setList(Item[] list) {
 		this.list = list;
-	}
-
-	private Item[] list;
-	
-	public List(int maxSize) {
-		this.list = new Item[maxSize];
 	}
 
 	public int getSize() {
@@ -27,49 +29,84 @@ public class List implements IList{
 
 	@Override
 	public void addFirst(Item item) {
-		// TODO Auto-generated method stub
-		
+		for (int i = this.size - 1; i >= 0; i--) {
+			this.list[i + 1] = this.list[i];
+			if (i == 0) {
+				this.list[i] = item;
+				this.size += 1;
+			}
+		}
 	}
 
 	@Override
 	public void addEnd(Item item) {
-		// TODO Auto-generated method stub
-		
+		this.list[size] = item;
+		this.size += 1;
 	}
 
 	@Override
 	public boolean full() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean isFull = false;
+		if(this.size == this.maxSize) {
+			isFull = true;
+		} else {
+			isFull = false;
+		}
+		return isFull;
 	}
 
 	@Override
 	public boolean empty() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean isEmpty = false;
+		if(this.size == 0) {
+			isEmpty = true;
+		} else {
+			isEmpty = false;
+		}
+		return isEmpty;
 	}
 
 	@Override
-	public Item printList() {
-		// TODO Auto-generated method stub
-		return null;
+	public void printList() {
+		for (int i = 0; i < this.size; i++) {
+			System.out.println(this.list[i]);
+		}
 	}
 
 	@Override
 	public Item searchName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		Item tmp = null;
+		for (int i = 0; i < this.size; i++) {
+			if (this.list[i].getName() == name) {
+				tmp = this.list[i];
+				break;
+			}
+		}
+		return tmp;
 	}
 
 	@Override
 	public Item searchOrder(int order) {
-		// TODO Auto-generated method stub
-		return null;
+		Item tmp = null;
+		if (this.list[order - 1] != null) {
+			tmp = this.list[order - 1];
+		}
+		return tmp;
 	}
 
 	@Override
 	public void drainOut() {
-		// TODO Auto-generated method stub
+		this.list = new Item[this.maxSize];
+	}
+
+	@Override
+	public Item remove(int order) {
+		Item tmp = null;
+		if (this.list[order -1] != null) {
+			tmp = this.list[order -1];
+			this.list[order -1] = null;
+		}
 		
+		return tmp;
 	}
 }
