@@ -5,8 +5,6 @@ public interface ILista {
     public void addEnd(Item item);
     public void printList();
 	public boolean empty();
-	public Item searchName(String name);
-	public Item searchOrder(int order);
-	public Item remove(int order);
+	public Item searchIndex(int index);
 	public void drainOut();
 }
