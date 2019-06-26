@@ -8,6 +8,11 @@ public class Item {
         setName(name);
         setGrades(grades);
     }
+    
+    @Override
+    public String toString() {
+        return getName() + " -==- " + getGrades();
+    }
 
     public float getGrades() {
         return this.grades;

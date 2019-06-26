@@ -5,9 +5,10 @@ public class Celula {
     private Celula previous;
     private Item item;
 
-    public Celula (Item item, Celula next) {
+    public Celula (Item item, Celula next, Celula previous) {
         setItem(item);
         setNext(next);
+        setPrevious(previous);
     }
 
     public Celula (Item item) {
