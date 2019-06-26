@@ -60,11 +60,12 @@ public class ListaDinamica implements ILista {
         Celula nowItem = this.first;
         
         if (index >= 0 && index < this.countList) {
-            System.out.println("Posição não encontrada");
-        } else {
             for (int i = 0; i < index; i++) {
                 nowItem = nowItem.getNext();
             }
+            
+        } else {
+            throw new IllegalArgumentException("Posição não encontrada");
         }
 
         return nowItem.getItem();
@@ -73,15 +74,9 @@ public class ListaDinamica implements ILista {
 
     @Override
     public void drainOut() {
-
+        this.first = null;
+        this.last = null;
+        this.countList = 0;
     }
 
-    public static void main(String[] args) {
-        ListaDinamica lista = new ListaDinamica();
-
-        lista.addFirst(new Item("jailson", 8));
-        lista.addFirst(new Item("jaja", 10));
-
-        lista.printList();
-    }
 }
